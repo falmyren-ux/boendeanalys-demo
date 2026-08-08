@@ -17,7 +17,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_2c03efe38ec2e109dd29981f49915f20 {
+                #map_c9bff87e9e3e3a367e11aebeaef6da44 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -54,7 +54,7 @@
 <body>
     
     
-            <div class="folium-map" id="map_2c03efe38ec2e109dd29981f49915f20" ></div>
+            <div class="folium-map" id="map_c9bff87e9e3e3a367e11aebeaef6da44" ></div>
         
 
 <style id="boendeanalys-ui-style">
@@ -85,6 +85,8 @@
 .ba-inline-value span{font-size:11px;color:#5f6c66;min-width:20px}
 .ba-weight{margin:3px 0;grid-template-columns:1fr 128px}
 .ba-weight select{width:128px;padding:3px}
+.ba-help{cursor:help}
+.ba-help:hover{background:#f2f6f4;border-radius:4px}
 .ba-check{margin-top:5px}
 .ba-note{margin-top:4px}
 .ba-buttons{margin-top:8px}
@@ -97,23 +99,22 @@
 
 <div id="ba-panel">
   <h3>Boendeanalys</h3>
-  <div class="ba-compact-row"><label for="ba-type">Bostadstyp:</label><select id="ba-type"><option value="villa">Villa</option><option value="lagenhet">Lägenhet</option><option value="radhus">Radhus</option><option value="fritidshus">Fritidshus</option></select></div>
-  <div class="ba-compact-row"><label for="ba-budget">Maxbudget:</label><div class="ba-inline-value"><input id="ba-budget" type="number" value="4000000" step="100000" min="0"><span>kr</span></div></div>
-  <div class="ba-compact-row"><label for="ba-area">Önskad boyta:</label><div class="ba-inline-value"><input id="ba-area" type="number" value="120" step="5" min="20"><span>m²</span></div></div>
-  <div class="ba-check"><input id="ba-hard-budget" type="checkbox" checked><label for="ba-hard-budget">Budget är ett krav</label></div>
+  <div class="ba-compact-row ba-help" title="Bostadstyp styr vilket lokalt kr/m²-underlag som används i prisberäkningen."><label for="ba-type">Bostadstyp:</label><select id="ba-type"><option value="villa">Villa</option><option value="lagenhet">Lägenhet</option><option value="radhus">Radhus</option><option value="fritidshus">Fritidshus</option></select></div>
+  <div class="ba-compact-row ba-help" title="Budget är ett mjukt kriterium, aldrig ett absolut krav. Uppskattat pris ≤75 % av budget = 100 poäng, vid budget = 70 poäng och vid 130 % av budget eller mer = 0 poäng."><label for="ba-budget">Maxbudget:</label><div class="ba-inline-value"><input id="ba-budget" type="number" value="4000000" step="100000" min="0"><span>kr</span></div></div>
+  <div class="ba-compact-row ba-help" title="Önskad boyta multipliceras med områdets uppskattade kr/m² för vald bostadstyp och ger det pris som jämförs med budgeten."><label for="ba-area">Önskad boyta:</label><div class="ba-inline-value"><input id="ba-area" type="number" value="120" step="5" min="20"><span>m²</span></div></div>
   <div class="ba-note">Demo: uppskattat bostadspris = lokalt kr/m² × önskad boyta.</div>
   <h4>Hur viktigt är följande?</h4>
-  <div class="ba-weight"><span>Nära sjö eller hav</span><select id="ba-w-water"><option value="0">Oviktigt</option><option value="1">Mindre viktigt</option><option value="2" selected>Viktigt</option><option value="3">Mycket viktigt</option></select></div>
-  <div class="ba-weight"><span>Nära grönområde</span><select id="ba-w-green"><option value="0">Oviktigt</option><option value="1">Mindre viktigt</option><option value="2" selected>Viktigt</option><option value="3">Mycket viktigt</option></select></div>
-  <div class="ba-weight"><span>Nära matbutik</span><select id="ba-w-shop"><option value="0">Oviktigt</option><option value="1" selected>Mindre viktigt</option><option value="2">Viktigt</option><option value="3">Mycket viktigt</option></select></div>
-  <div class="ba-weight"><span>Nära skola</span><select id="ba-w-school"><option value="0">Oviktigt</option><option value="1">Mindre viktigt</option><option value="2" selected>Viktigt</option><option value="3">Mycket viktigt</option></select></div>
-  <div class="ba-weight"><span>Nära förskola</span><select id="ba-w-kind"><option value="0">Oviktigt</option><option value="1">Mindre viktigt</option><option value="2" selected>Viktigt</option><option value="3">Mycket viktigt</option></select></div>
-  <div class="ba-weight"><span>Restid till Göteborg C</span><select id="ba-w-transit"><option value="0">Oviktigt</option><option value="1">Mindre viktigt</option><option value="2" selected>Viktigt</option><option value="3">Mycket viktigt</option></select></div>
-  <div class="ba-compact-row"><label for="ba-gbg-good">Rimlig restid Göteborg C:</label><div class="ba-inline-value"><input id="ba-gbg-good" type="number" value="60" step="5" min="20" max="180"><span>min</span></div></div>
+  <div class="ba-weight ba-help" title="Sjö eller hav: 100 m eller närmare = 100 poäng. Poängen minskar linjärt och är 0 vid 500 m eller längre."><span>Nära sjö eller hav</span><select id="ba-w-water"><option value="0">Oviktigt</option><option value="1">Mindre viktigt</option><option value="2" selected>Viktigt</option><option value="3">Mycket viktigt</option></select></div>
+  <div class="ba-weight ba-help" title="Nära vård: närmaste primärvård/vårdcentral. 1,5 km eller närmare = 100 poäng. Poängen minskar linjärt och är 0 vid 10 km eller längre."><span>Nära vård</span><select id="ba-w-care"><option value="0">Oviktigt</option><option value="1">Mindre viktigt</option><option value="2" selected>Viktigt</option><option value="3">Mycket viktigt</option></select></div>
+  <div class="ba-weight ba-help" title="Matbutik: 500 m eller närmare = 100 poäng. Poängen minskar linjärt och är 0 vid 5 km eller längre."><span>Nära matbutik</span><select id="ba-w-shop"><option value="0">Oviktigt</option><option value="1" selected>Mindre viktigt</option><option value="2">Viktigt</option><option value="3">Mycket viktigt</option></select></div>
+  <div class="ba-weight ba-help" title="Skola: 700 m eller närmare = 100 poäng. Poängen minskar linjärt och är 0 vid 5 km eller längre."><span>Nära skola</span><select id="ba-w-school"><option value="0">Oviktigt</option><option value="1">Mindre viktigt</option><option value="2" selected>Viktigt</option><option value="3">Mycket viktigt</option></select></div>
+  <div class="ba-weight ba-help" title="Förskola: 700 m eller närmare = 100 poäng. Poängen minskar linjärt och är 0 vid 5 km eller längre."><span>Nära förskola</span><select id="ba-w-kind"><option value="0">Oviktigt</option><option value="1">Mindre viktigt</option><option value="2" selected>Viktigt</option><option value="3">Mycket viktigt</option></select></div>
+  <div class="ba-weight ba-help" title="Restid till Göteborg C: vald rimlig restid eller kortare = 100 poäng. Poängen minskar linjärt till 0 vid 60 minuter över den rimliga restiden. Saknad restid ger 0 poäng om kriteriet har vikt."><span>Restid till Göteborg C</span><select id="ba-w-transit"><option value="0">Oviktigt</option><option value="1">Mindre viktigt</option><option value="2" selected>Viktigt</option><option value="3">Mycket viktigt</option></select></div>
+  <div class="ba-compact-row ba-help" title="Den här tiden definierar gränsen för full poäng på Göteborgskriteriet."><label for="ba-gbg-good">Rimlig restid Göteborg C:</label><div class="ba-inline-value"><input id="ba-gbg-good" type="number" value="60" step="5" min="20" max="180"><span>min</span></div></div>
   <div class="ba-buttons"><button class="ba-run" id="ba-run" type="button">Analysera</button><button class="ba-reset" id="ba-reset" type="button">Återställ</button></div>
   <div class="ba-buttons"><button class="ba-toggle ba-active" id="ba-toggle-colors" type="button">Dölj färgmarkering</button></div>
   <div id="ba-status">Initierar karta…</div>
-  <div class="ba-note">Byggd: 2026-08-08 00:42</div>
+  <div class="ba-note">Byggd: 2026-08-08 08:48</div>
   <div id="ba-summary"></div>
   <div class="ba-legend" id="ba-legend"><div class="ba-gradient"></div><div class="ba-legend-labels"><span>Låg matchning</span><span>Hög matchning</span></div></div>
 </div>
@@ -293,8 +294,8 @@
 <script>
     
     
-            var map_2c03efe38ec2e109dd29981f49915f20 = L.map(
-                "map_2c03efe38ec2e109dd29981f49915f20",
+            var map_c9bff87e9e3e3a367e11aebeaef6da44 = L.map(
+                "map_c9bff87e9e3e3a367e11aebeaef6da44",
                 {
                     center: [58.1, 12.16],
                     crs: L.CRS.EPSG3857,
@@ -311,7 +312,7 @@
 
         
     
-            var tile_layer_be8a2352922173457121838138e4ef60 = L.tileLayer(
+            var tile_layer_27f58ec1e19b95a0690d532b807ef78a = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -328,136 +329,136 @@
             );
         
     
-            tile_layer_be8a2352922173457121838138e4ef60.addTo(map_2c03efe38ec2e109dd29981f49915f20);
+            tile_layer_27f58ec1e19b95a0690d532b807ef78a.addTo(map_c9bff87e9e3e3a367e11aebeaef6da44);
         
     
-        function geo_json_40ee11032dbfb191403f64d43c43defc_styler(feature) {
+        function geo_json_5bf0aefdbc2e8952036588cc43c4522a_styler(feature) {
             switch(feature.properties.h3_id) {
                 default:
                     return {"color": "#6f7f78", "fillColor": "#9aa8a1", "fillOpacity": 0.035, "opacity": 0.55, "weight": 0.75};
             }
         }
 
-        function geo_json_40ee11032dbfb191403f64d43c43defc_onEachFeature(feature, layer) {
+        function geo_json_5bf0aefdbc2e8952036588cc43c4522a_onEachFeature(feature, layer) {
 
             layer.on({
             });
         };
-        var geo_json_40ee11032dbfb191403f64d43c43defc = L.geoJson(null, {
-                onEachFeature: geo_json_40ee11032dbfb191403f64d43c43defc_onEachFeature,
+        var geo_json_5bf0aefdbc2e8952036588cc43c4522a = L.geoJson(null, {
+                onEachFeature: geo_json_5bf0aefdbc2e8952036588cc43c4522a_onEachFeature,
             
-                style: geo_json_40ee11032dbfb191403f64d43c43defc_styler,
+                style: geo_json_5bf0aefdbc2e8952036588cc43c4522a_styler,
             ...{
 }
         });
 
-        function geo_json_40ee11032dbfb191403f64d43c43defc_add (data) {
-            geo_json_40ee11032dbfb191403f64d43c43defc
+        function geo_json_5bf0aefdbc2e8952036588cc43c4522a_add (data) {
+            geo_json_5bf0aefdbc2e8952036588cc43c4522a
                 .addData(data);
         }
-            (function(){var urls=["data/h3_r6.json"];Promise.all(urls.map(function(u){return fetch(u).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status+" for "+u);return r.json();});})).then(function(parts){parts.forEach(function(data){geo_json_40ee11032dbfb191403f64d43c43defc_add(data);});map_2c03efe38ec2e109dd29981f49915f20.fire("zoomend");window.dispatchEvent(new CustomEvent("boendeanalys-data-loaded",{detail:{resolution:6,parts:parts.length}}));}).catch(function(err){console.error("Kunde inte ladda H3-data r6",err);});})();
+            (function(){var urls=["data/h3_r6.json"];Promise.all(urls.map(function(u){return fetch(u).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status+" for "+u);return r.json();});})).then(function(parts){parts.forEach(function(data){geo_json_5bf0aefdbc2e8952036588cc43c4522a_add(data);});map_c9bff87e9e3e3a367e11aebeaef6da44.fire("zoomend");window.dispatchEvent(new CustomEvent("boendeanalys-data-loaded",{detail:{resolution:6,parts:parts.length}}));}).catch(function(err){console.error("Kunde inte ladda H3-data r6",err);});})();
 
         
     
-            geo_json_40ee11032dbfb191403f64d43c43defc.addTo(map_2c03efe38ec2e109dd29981f49915f20);
+            geo_json_5bf0aefdbc2e8952036588cc43c4522a.addTo(map_c9bff87e9e3e3a367e11aebeaef6da44);
         
     
-        function geo_json_63c625ab4a6f658035a03e569d0a0ece_styler(feature) {
+        function geo_json_8b90a5c5965ffe2367aa651d2ce2594a_styler(feature) {
             switch(feature.properties.h3_id) {
                 default:
                     return {"color": "#6f7f78", "fillColor": "#9aa8a1", "fillOpacity": 0.035, "opacity": 0.55, "weight": 0.75};
             }
         }
 
-        function geo_json_63c625ab4a6f658035a03e569d0a0ece_onEachFeature(feature, layer) {
+        function geo_json_8b90a5c5965ffe2367aa651d2ce2594a_onEachFeature(feature, layer) {
 
             layer.on({
             });
         };
-        var geo_json_63c625ab4a6f658035a03e569d0a0ece = L.geoJson(null, {
-                onEachFeature: geo_json_63c625ab4a6f658035a03e569d0a0ece_onEachFeature,
+        var geo_json_8b90a5c5965ffe2367aa651d2ce2594a = L.geoJson(null, {
+                onEachFeature: geo_json_8b90a5c5965ffe2367aa651d2ce2594a_onEachFeature,
             
-                style: geo_json_63c625ab4a6f658035a03e569d0a0ece_styler,
+                style: geo_json_8b90a5c5965ffe2367aa651d2ce2594a_styler,
             ...{
 }
         });
 
-        function geo_json_63c625ab4a6f658035a03e569d0a0ece_add (data) {
-            geo_json_63c625ab4a6f658035a03e569d0a0ece
+        function geo_json_8b90a5c5965ffe2367aa651d2ce2594a_add (data) {
+            geo_json_8b90a5c5965ffe2367aa651d2ce2594a
                 .addData(data);
         }
-            (function(){var urls=["data/h3_r7.json"];Promise.all(urls.map(function(u){return fetch(u).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status+" for "+u);return r.json();});})).then(function(parts){parts.forEach(function(data){geo_json_63c625ab4a6f658035a03e569d0a0ece_add(data);});map_2c03efe38ec2e109dd29981f49915f20.fire("zoomend");window.dispatchEvent(new CustomEvent("boendeanalys-data-loaded",{detail:{resolution:7,parts:parts.length}}));}).catch(function(err){console.error("Kunde inte ladda H3-data r7",err);});})();
+            (function(){var urls=["data/h3_r7.json"];Promise.all(urls.map(function(u){return fetch(u).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status+" for "+u);return r.json();});})).then(function(parts){parts.forEach(function(data){geo_json_8b90a5c5965ffe2367aa651d2ce2594a_add(data);});map_c9bff87e9e3e3a367e11aebeaef6da44.fire("zoomend");window.dispatchEvent(new CustomEvent("boendeanalys-data-loaded",{detail:{resolution:7,parts:parts.length}}));}).catch(function(err){console.error("Kunde inte ladda H3-data r7",err);});})();
 
         
     
-            geo_json_63c625ab4a6f658035a03e569d0a0ece.addTo(map_2c03efe38ec2e109dd29981f49915f20);
+            geo_json_8b90a5c5965ffe2367aa651d2ce2594a.addTo(map_c9bff87e9e3e3a367e11aebeaef6da44);
         
     
-        function geo_json_e424bfe564fa4d84e77fcb9c1359f172_styler(feature) {
+        function geo_json_3f7129208cb6076fb3b63e7b800ccf61_styler(feature) {
             switch(feature.properties.h3_id) {
                 default:
                     return {"color": "#6f7f78", "fillColor": "#9aa8a1", "fillOpacity": 0.035, "opacity": 0.55, "weight": 0.75};
             }
         }
 
-        function geo_json_e424bfe564fa4d84e77fcb9c1359f172_onEachFeature(feature, layer) {
+        function geo_json_3f7129208cb6076fb3b63e7b800ccf61_onEachFeature(feature, layer) {
 
             layer.on({
             });
         };
-        var geo_json_e424bfe564fa4d84e77fcb9c1359f172 = L.geoJson(null, {
-                onEachFeature: geo_json_e424bfe564fa4d84e77fcb9c1359f172_onEachFeature,
+        var geo_json_3f7129208cb6076fb3b63e7b800ccf61 = L.geoJson(null, {
+                onEachFeature: geo_json_3f7129208cb6076fb3b63e7b800ccf61_onEachFeature,
             
-                style: geo_json_e424bfe564fa4d84e77fcb9c1359f172_styler,
+                style: geo_json_3f7129208cb6076fb3b63e7b800ccf61_styler,
             ...{
 }
         });
 
-        function geo_json_e424bfe564fa4d84e77fcb9c1359f172_add (data) {
-            geo_json_e424bfe564fa4d84e77fcb9c1359f172
+        function geo_json_3f7129208cb6076fb3b63e7b800ccf61_add (data) {
+            geo_json_3f7129208cb6076fb3b63e7b800ccf61
                 .addData(data);
         }
-            (function(){var urls=["data/h3_r8.json"];Promise.all(urls.map(function(u){return fetch(u).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status+" for "+u);return r.json();});})).then(function(parts){parts.forEach(function(data){geo_json_e424bfe564fa4d84e77fcb9c1359f172_add(data);});map_2c03efe38ec2e109dd29981f49915f20.fire("zoomend");window.dispatchEvent(new CustomEvent("boendeanalys-data-loaded",{detail:{resolution:8,parts:parts.length}}));}).catch(function(err){console.error("Kunde inte ladda H3-data r8",err);});})();
+            (function(){var urls=["data/h3_r8.json"];Promise.all(urls.map(function(u){return fetch(u).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status+" for "+u);return r.json();});})).then(function(parts){parts.forEach(function(data){geo_json_3f7129208cb6076fb3b63e7b800ccf61_add(data);});map_c9bff87e9e3e3a367e11aebeaef6da44.fire("zoomend");window.dispatchEvent(new CustomEvent("boendeanalys-data-loaded",{detail:{resolution:8,parts:parts.length}}));}).catch(function(err){console.error("Kunde inte ladda H3-data r8",err);});})();
 
         
     
-            geo_json_e424bfe564fa4d84e77fcb9c1359f172.addTo(map_2c03efe38ec2e109dd29981f49915f20);
+            geo_json_3f7129208cb6076fb3b63e7b800ccf61.addTo(map_c9bff87e9e3e3a367e11aebeaef6da44);
         
     
-        function geo_json_996c11af45136c32d2b94a21ff30140f_styler(feature) {
+        function geo_json_0b3aab9ca204aca58d7609e77cce56be_styler(feature) {
             switch(feature.properties.h3_id) {
                 default:
                     return {"color": "#6f7f78", "fillColor": "#9aa8a1", "fillOpacity": 0.035, "opacity": 0.55, "weight": 0.75};
             }
         }
 
-        function geo_json_996c11af45136c32d2b94a21ff30140f_onEachFeature(feature, layer) {
+        function geo_json_0b3aab9ca204aca58d7609e77cce56be_onEachFeature(feature, layer) {
 
             layer.on({
             });
         };
-        var geo_json_996c11af45136c32d2b94a21ff30140f = L.geoJson(null, {
-                onEachFeature: geo_json_996c11af45136c32d2b94a21ff30140f_onEachFeature,
+        var geo_json_0b3aab9ca204aca58d7609e77cce56be = L.geoJson(null, {
+                onEachFeature: geo_json_0b3aab9ca204aca58d7609e77cce56be_onEachFeature,
             
-                style: geo_json_996c11af45136c32d2b94a21ff30140f_styler,
+                style: geo_json_0b3aab9ca204aca58d7609e77cce56be_styler,
             ...{
 }
         });
 
-        function geo_json_996c11af45136c32d2b94a21ff30140f_add (data) {
-            geo_json_996c11af45136c32d2b94a21ff30140f
+        function geo_json_0b3aab9ca204aca58d7609e77cce56be_add (data) {
+            geo_json_0b3aab9ca204aca58d7609e77cce56be
                 .addData(data);
         }
-            (function(){var urls=["data/h3_r9_01.json","data/h3_r9_02.json"];Promise.all(urls.map(function(u){return fetch(u).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status+" for "+u);return r.json();});})).then(function(parts){parts.forEach(function(data){geo_json_996c11af45136c32d2b94a21ff30140f_add(data);});map_2c03efe38ec2e109dd29981f49915f20.fire("zoomend");window.dispatchEvent(new CustomEvent("boendeanalys-data-loaded",{detail:{resolution:9,parts:parts.length}}));}).catch(function(err){console.error("Kunde inte ladda H3-data r9",err);});})();
+            (function(){var urls=["data/h3_r9_01.json","data/h3_r9_02.json"];Promise.all(urls.map(function(u){return fetch(u).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status+" for "+u);return r.json();});})).then(function(parts){parts.forEach(function(data){geo_json_0b3aab9ca204aca58d7609e77cce56be_add(data);});map_c9bff87e9e3e3a367e11aebeaef6da44.fire("zoomend");window.dispatchEvent(new CustomEvent("boendeanalys-data-loaded",{detail:{resolution:9,parts:parts.length}}));}).catch(function(err){console.error("Kunde inte ladda H3-data r9",err);});})();
 
         
     
-            geo_json_996c11af45136c32d2b94a21ff30140f.addTo(map_2c03efe38ec2e109dd29981f49915f20);
+            geo_json_0b3aab9ca204aca58d7609e77cce56be.addTo(map_c9bff87e9e3e3a367e11aebeaef6da44);
         
     
     (function() {
-        var map = map_2c03efe38ec2e109dd29981f49915f20;
-        var h3Layers = {6: geo_json_40ee11032dbfb191403f64d43c43defc, 7: geo_json_63c625ab4a6f658035a03e569d0a0ece, 8: geo_json_e424bfe564fa4d84e77fcb9c1359f172, 9: geo_json_996c11af45136c32d2b94a21ff30140f};
+        var map = map_c9bff87e9e3e3a367e11aebeaef6da44;
+        var h3Layers = {6: geo_json_5bf0aefdbc2e8952036588cc43c4522a, 7: geo_json_8b90a5c5965ffe2367aa651d2ce2594a, 8: geo_json_3f7129208cb6076fb3b63e7b800ccf61, 9: geo_json_0b3aab9ca204aca58d7609e77cce56be};
         function resolutionForZoom(zoom) { if (zoom >= 12) return 9; if (zoom >= 10) return 8; if (zoom >= 8) return 7; return 6; }
         function updateH3Layer() {
             var target = resolutionForZoom(map.getZoom());
@@ -474,7 +475,7 @@
 
 <script id="boendeanalys-ui-script">
 (function(){
-const mapName='map_2c03efe38ec2e109dd29981f49915f20';
+const mapName='map_c9bff87e9e3e3a367e11aebeaef6da44';
 const neutral={color:'#6f7f78',fillColor:'#9aa8a1',fillOpacity:0.035,opacity:0.55,weight:0.75};
 const selectedOutline={color:'#173f31',opacity:1,weight:3};
 const statusEl=document.getElementById('ba-status');
@@ -492,18 +493,33 @@ function esc(v){return String(v??'').replace(/[&<>"']/g,function(c){return {'&':
 function distanceScore(v,good,bad){if(v===null||v===undefined||isNaN(v))return null;if(v<=good)return 100;if(v>=bad)return 0;return 100*(bad-v)/(bad-good);}
 function priceScore(ppm2,area,budget,hard){if(!ppm2||!area||!budget)return {score:null,estimated:null,fail:false};const est=ppm2*area;if(hard&&est>budget)return {score:0,estimated:est,fail:true};const ratio=est/budget;if(ratio<=0.75)return {score:100,estimated:est,fail:false};if(ratio<=1)return {score:100-(ratio-.75)/.25*30,estimated:est,fail:false};if(ratio<=1.3)return {score:70-(ratio-1)/.3*70,estimated:est,fail:false};return {score:0,estimated:est,fail:false};}
 function color(s){if(s===null)return '#aeb4b1';if(s>=85)return '#2d7d46';if(s>=70)return '#79b86b';if(s>=55)return '#d4d85b';if(s>=40)return '#e1a83a';return '#b33b32';}
-function areaName(p){const place=p.representative_place_name||p.nearest_street||p.street_name||p.address_street||p.nearest_public_transport||p.nearest_train_station||p.nearest_bus_stop||p.nearest_school||p.nearest_kindergarten||p.nearest_green_area||p.nearest_supermarket;const municipality=p.representative_municipality||((p.housing_municipality&&p.housing_municipality!=='Flera kommuner')?p.housing_municipality:null);if(place&&municipality)return 'Område: '+place+', '+municipality;if(place)return 'Område: '+place;if(municipality)return 'Område: '+municipality;return 'Område';}
+function areaName(p){const place=p.representative_place_name||p.nearest_street||p.street_name||p.address_street||p.nearest_public_transport||p.nearest_train_station||p.nearest_bus_stop||p.nearest_school||p.nearest_kindergarten||p.nearest_primary_care||p.nearest_supermarket;const municipality=p.representative_municipality||((p.housing_municipality&&p.housing_municipality!=='Flera kommuner')?p.housing_municipality:null);if(place&&municipality)return 'Område: '+place+', '+municipality;if(place)return 'Område: '+place;if(municipality)return 'Område: '+municipality;return 'Område';}
 function scoreFeature(p){
- const type=document.getElementById('ba-type').value,budget=n('ba-budget'),area=n('ba-area'),hard=document.getElementById('ba-hard-budget').checked;
+ const type=document.getElementById('ba-type').value,budget=n('ba-budget'),area=n('ba-area'),hard=false;
  const ppm2=p['housing_'+type+'_local_estimate_price_per_m2'];const ps=priceScore(ppm2,area,budget,hard);
  if(ps.fail)return {score:0,fail:true,estimated:ps.estimated,ppm2:ppm2,parts:{budget:0}};
- const defs=[['water',weight('ba-w-water'),p.water_distance_m,100,500],['grönområde',weight('ba-w-green'),p.green_area_distance_m,300,2500],['matbutik',weight('ba-w-shop'),p.supermarket_distance_m,500,5000],['skola',weight('ba-w-school'),p.school_distance_m,700,5000],['förskola',weight('ba-w-kind'),p.kindergarten_distance_m,700,5000],['Göteborg C',weight('ba-w-transit'),p.transit_goteborg_c_morning_06_09_typical_min,n('ba-gbg-good')||60,(n('ba-gbg-good')||60)+60]];
+ const defs=[['Sjö/hav',weight('ba-w-water'),p.water_distance_m,100,500],['Vård',weight('ba-w-care'),p.primary_care_distance_m,1500,10000],['matbutik',weight('ba-w-shop'),p.supermarket_distance_m,500,5000],['skola',weight('ba-w-school'),p.school_distance_m,700,5000],['förskola',weight('ba-w-kind'),p.kindergarten_distance_m,700,5000],['Göteborg C',weight('ba-w-transit'),p.transit_goteborg_c_morning_06_09_typical_min,n('ba-gbg-good')||60,(n('ba-gbg-good')||60)+60]];
  let total=0,ws=0,parts={};if(ps.score!==null){total+=ps.score*3;ws+=3;parts.budget=Math.round(ps.score);}
  defs.forEach(function(d){if(d[1]<=0)return;const s=distanceScore(d[2],d[3],d[4]);if(s!==null){total+=s*d[1];ws+=d[1];parts[d[0]]=Math.round(s);}else if(d[0]==='Göteborg C'){ws+=d[1];parts[d[0]]=0;}});
  return {score:ws?Math.round(total/ws):null,fail:false,estimated:ps.estimated,ppm2:ppm2,parts:parts};
 }
 function row(k,v){return '<div>'+esc(k)+'</div><div class="v">'+esc(v)+'</div>';}
 function section(title,rows){return '<h4>'+esc(title)+'</h4><div class="ba-info-grid">'+rows.join('')+'</div>';}
+
+function scoreExplanation(p){
+ const r=scoreFeature(p),rows=[];
+ function add(label,key,w){if(w<=0)return;const s=r.parts&&r.parts[key];if(s===undefined||s===null)return;rows.push(row(label+' (vikt '+w+')',s+' × '+w+' = '+Math.round(s*w)));}
+ add('Budget','budget',3);
+ add('Sjö/hav','Sjö/hav',weight('ba-w-water'));
+ add('Vård','Vård',weight('ba-w-care'));
+ add('Matbutik','matbutik',weight('ba-w-shop'));
+ add('Skola','skola',weight('ba-w-school'));
+ add('Förskola','förskola',weight('ba-w-kind'));
+ add('Göteborg C','Göteborg C',weight('ba-w-transit'));
+ if(!rows.length)return '';
+ rows.push(row('Sammanvägd poäng',r.score===null?'–':r.score+'/100'));
+ return section('Så räknas poängen',rows)+'<div class="ba-info-sub">Delpoäng 0–100 multipliceras med vald vikt. Summan delas med summan av vikterna. Budget har fast vikt 3.</div>';
+}
 function renderInfo(layer,detailed){
  if(!layer||!layer.feature){infoEl.innerHTML='<span class="ba-info-muted">Ingen hexagon vald.</span>';return;}
  const p=layer.feature.properties||{},type=document.getElementById('ba-type').value,typeLabel=document.getElementById('ba-type').selectedOptions[0].text;
@@ -517,6 +533,7 @@ function renderInfo(layer,detailed){
    row('Säkerhet',conf||'–'),
    row('Sjö eller hav',fmt(p.water_distance_m,' m')),
    row('Bredare vattendrag',fmt(p.water_river_surface_distance_m,' m')),
+   row('Vård',fmt(p.primary_care_distance_m,' m')),
    row('Matbutik',fmt(p.supermarket_distance_m,' m')),
    row('Skola',fmt(p.school_distance_m,' m')),
    row('Förskola',fmt(p.kindergarten_distance_m,' m')),
@@ -559,6 +576,7 @@ function renderInfo(layer,detailed){
    row('Bredare vattendrag',fmt(p.water_river_surface_distance_m,' m')),row('Grönområde',fmt(p.green_area_distance_m,' m')),row('Närmaste grönområde',p.nearest_green_area||'–')
    ]);
  }
+ if(detailed&&analysisApplied)html+=scoreExplanation(p);
  infoEl.innerHTML=html;
 }
 function visibleBase(layer){return analysisApplied&&analysisColorsVisible?(layer._baAnalysisStyle||neutral):neutral;}
